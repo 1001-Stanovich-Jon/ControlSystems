@@ -118,6 +118,9 @@ $$LL =-2\hspace{2em}\text{and}\hspace{2em}UL = 2$$
 Here the output is:
 ![image](https://user-images.githubusercontent.com/84261577/225810736-0b5208fe-3eac-482a-8a2e-3862626ec47d.png)
 
+This case is more interesting (I think at least). Here since the deadzone is in a positive and negative region, it does the opposite of what we saw previously, and results in the dead zone curve being pulled towards 0. We wee that when the input to the dead zone block is over 2, the output is simply the original sine wave -2, and conversely when the input is under 2, the output is the signal +2. However, because this is symmetric about 0, it basically weakens the signal by pulling it in.
+
+The affects of this on the output are understandable, the output doesn't change as much since the input is reduced, and so it is almost a scaled down version of the original system output. But since our deadzone is symmetric about 0, there is no drift like we saw previously, this will change if do not have a symmetric dead zone, as you can see below.
 
 ## Different Upper and Lower Limits
 
@@ -129,7 +132,4 @@ Here the output is:
 
 ![image](https://user-images.githubusercontent.com/84261577/225810965-a6a7a914-d7cd-486b-9ce2-ae0543ac73c0.png)
 
-
-# Conclusions
-
-So it seems that if the deadzone is at one extreme or the other, the output signal will drift towards that. 
+This is an interesting case. Because the deadzone favors the negative region, then on average we receive less of an input there, and so this causes the curve to drift up slightly over time (the dead zone output in yellow). I guess this is an important lesson in that if your controls aren't equally wrong, then you will have even more problems to deal with than just not proper functioning. 
