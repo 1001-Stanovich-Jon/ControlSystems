@@ -97,6 +97,8 @@ Here the output is:
 
 ![image](https://user-images.githubusercontent.com/84261577/225810627-af7f700d-1ab7-4fe7-a919-20955a3726e1.png)
 
+This is interesting. Since the input is always less than the lower limit LL, and LL is positive, then the signal will always be shifted down, and simply cutoff when the original input is over 3. This results in the deadzone input always being negative, making the system output trend downwards.
+
 
 ## Only Lower Limit
 
@@ -106,6 +108,7 @@ $$LL = -100 \text{ and }UL=-3$$
 Here the output is:
 ![image](https://user-images.githubusercontent.com/84261577/225810687-e37a936a-d7fb-40ff-8464-731eb4d166f1.png)
 
+This is interesting too, as it's basically just the reverse of the previous case. Since the input is always greater than the uppler limit UL, and UL is negative, then the signal will always be shifted up since subtracting UL is basically adding. Likewise, the deadzone signal will simply cutoff when the original input is under -3. This results in the deadzone input always being positive, making the system output trend upwards.
 
 ## Equal Upper and Lower Limit
 
@@ -126,3 +129,7 @@ Here the output is:
 
 ![image](https://user-images.githubusercontent.com/84261577/225810965-a6a7a914-d7cd-486b-9ce2-ae0543ac73c0.png)
 
+
+# Conclusions
+
+So it seems that if the deadzone is at one extreme or the other, the output signal will drift towards that. 
