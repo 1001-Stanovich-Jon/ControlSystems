@@ -22,13 +22,13 @@ The output is shown below (blue trace is unmodified response | yellow trace is r
 
 Notice that the final value of the saturated response is(approx 0.6) one half the unsaturated one (approx 1.2), this is because out input's magnitude is limited to one half of it's value (input is 10, saturation is 5). Let's test this theory.
  
-We should expect an output of around 1 for a saturation level of +8V  and an output of around 0.8$\cdot$1.2 = 0.96 for the saturated response:
+We should expect an output of around 1 for a saturation level of +8V  and an output of around 0.8$$\cdot$$1.2 = 0.96 for the saturated response:
 
 That is exactly what we get:
 
 ![image](https://user-images.githubusercontent.com/84261577/225768923-4cb332b9-39d1-482b-8990-56e8bbb867cb.png)
 
-Lets work backwards more. This means for a saturation level of 3V then we would expect 0.3$\cdot$1.2=0.36V final value for the saturated response.
+Lets work backwards more. This means for a saturation level of 3V then we would expect 0.3$$\cdot$$1.2=0.36V final value for the saturated response.
 
 This is exactly what we get:
 
