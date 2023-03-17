@@ -14,6 +14,8 @@ $$ \text{For }\hspace{2em} X > UL \hspace{2em}\text{we have}\hspace{2em} \text{O
 
 $$ \text{For }\hspace{2em} X < LL \hspace{2em}\text{we have}\hspace{2em} \text{Output }= X - LL$$
 
+Note that this means that if your upper or lower limit are positive it will shift the output down, and if they are negative it will shift the output up.
+
 So we see that in both cases the input will ultimately be shifted *down* by the upper and lower limits. Let's look at an example. Let's have an input that is a simple sine wave with amplitude 10. The normal output will look like:
 
 ![image](https://user-images.githubusercontent.com/84261577/225808070-cbd203d3-ee91-4bdf-a6da-94a9fcbf4791.png)
@@ -40,6 +42,8 @@ $$LL = -100 \text{ and }UL=-3$$
 
 Here the output is:
 
+![image](https://user-images.githubusercontent.com/84261577/225809411-8516d27b-ea35-4e26-b3bc-fc43f5eeb103.png)
+
 
 # Proper Use
 
@@ -52,6 +56,9 @@ $$LL =-2\hspace{2em}\text{and}\hspace{2em}UL = 2$$
 
 Here the output is:
 
+![image](https://user-images.githubusercontent.com/84261577/225809518-60b82b58-4f5c-41bd-851a-10de7e0d47da.png)
+
+
 ## Different Upper and Lower Limits
 
 
@@ -60,35 +67,62 @@ $$LL =-5\hspace{2em}\text{and}\hspace{2em}UL = 3$$
 
 Here the output is:
 
+![image](https://user-images.githubusercontent.com/84261577/225809738-82ef66cd-1fd8-45f5-a834-cc5b6a59efef.png)
+
+### Notes
+
+So in the case that we saw in class, with a region around 0, we see that it ultimately pulls the curve towards 0 (i.e. voltages above 0 become smaller, and voltage below 0 get larger, both closer to 0 than the original input.
 
 
+# Effect of Deadzone When Applied to System
+
+Now let's see what happens in each case when we apply it to the system shown in class, namely:
+
+![image](https://user-images.githubusercontent.com/84261577/225810083-52680572-38f3-48d2-904c-f855f0155d05.png)
+
+Note for all plots below:
+- Blue Trace is output of system using the unmodified original sine wave (orange) as input (labelled as "Integrator 1" in the plot legend)
+- Yellow Trace is output of system using the *deadzone output* (green) as input (labelled as "Integrator" in the plot legend)
+- Orange Trace is the unmodified sine wave with amplitude 10 (labelled as "Sine Wave" in the plot legend)
+- Green Trace is the *deadzone output* using the sine wave as input (labelled as "Dead Zone" in the plot legend)
+
+## Only An Upper Limit
+
+MATLAB will not let you specify only one parameter, so we'll "trick" it by making our lower limit the maximum output we want, and we'll set the upper limit to something over 10. By doing thise we're basically trying to have a deadzone whenever our original input is over 3V.
+
+We'll use 
+$$LL = 3 \text{ and }UL=100$$
+
+Here the output is:
+
+![image](https://user-images.githubusercontent.com/84261577/225810627-af7f700d-1ab7-4fe7-a919-20955a3726e1.png)
 
 
+## Only Lower Limit
+
+We'll use 
+$$LL = -100 \text{ and }UL=-3$$
+
+Here the output is:
+![image](https://user-images.githubusercontent.com/84261577/225810687-e37a936a-d7fb-40ff-8464-731eb4d166f1.png)
 
 
+## Equal Upper and Lower Limit
+
+We'll use 
+$$LL =-2\hspace{2em}\text{and}\hspace{2em}UL = 2$$
+
+Here the output is:
+![image](https://user-images.githubusercontent.com/84261577/225810736-0b5208fe-3eac-482a-8a2e-3862626ec47d.png)
 
 
-We'll use the file provided to us with the diagram of an ideal, unmodified step input (bottom branch) and a step response with a deadzone model. 
-
-The deadzone model works by **outputting zero** for any inputs within the deadzone. This allows us to model the system as basically not being able to produce input within these regions, and immediately jumpting to the associated out put when the deadzone is overcome.
-
-For example, if your input was 
-
-$$y(x) = 2x$$
-
-and your deadzone was
-$x \in \[0,1)$$
-then you would have no output in that region, and then as soon at 
-$$x=1$$ 
-your output would jump to
-
-$$y(1) = 2$$ 
-without having a chance to take on any values from 0 to 2.
-
-## At least this ^^^ is how the block works, I'm sure it's not exactly like that in the real world.
-
-Let's look at some cases. 
+## Different Upper and Lower Limits
 
 
+We'll use 
+$$LL =-5\hspace{2em}\text{and}\hspace{2em}UL = 3$$
 
+Here the output is:
+
+![image](https://user-images.githubusercontent.com/84261577/225810965-a6a7a914-d7cd-486b-9ce2-ae0543ac73c0.png)
 
